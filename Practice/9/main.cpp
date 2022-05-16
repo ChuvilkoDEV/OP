@@ -1,74 +1,93 @@
 #include <iostream>
 #include <string>
+#include <utility>
 
 using namespace std;
 
-int main() {
-  string s;
-  cin >> s;
+enum WorkResult {
+  OK,
+  expectedOpeningBracket,
+  expectedClosingBracket
+};
 
+WorkResult replaceBrace(string &sOrig) {
   int levelReplace = 0;
+  string s = move(sOrig);
+
   for (auto &i: s) {
     switch (levelReplace) {
       case 0:
         switch (i) {
           case '(':
-            cout << '{';
+            i = '{';
             levelReplace++;
             break;
           case ')':
-            perror("\nExpected: '('");
-            return 1;
+            return expectedOpeningBracket;
           default:
-            cout << i;
+            continue;
         }
         break;
       case 1:
         switch (i) {
           case '(':
-            cout << '[';
+            i = '[';
             levelReplace++;
             break;
           case ')':
-            cout << '}';
+            i = '}';
             levelReplace--;
             break;
           default:
-            cout << i;
+            continue;
         }
         break;
       case 2:
         switch (i) {
           case '(':
-            cout << '(';
             levelReplace++;
             break;
           case ')':
-            cout << ']';
+            i = ']';
             levelReplace--;
             break;
           default:
-            cout << i;
+            continue;
         }
         break;
-      case 3:
+      default:
         switch (i) {
           case '(':
-            perror("\nExpected: '('");
-            return 2;
+            levelReplace++;
           case ')':
-            cout << ')';
             levelReplace--;
             break;
           default:
-            cout << i;
+            continue;
         }
         break;
     }
   }
 
   if (levelReplace != 0)
-    perror("\nExpected: ')'");
+    return expectedClosingBracket;
+
+  sOrig = move(s);
+
+  return OK;
+}
+
+int main() {
+  string s;
+  cin >> s;
+
+  WorkResult r = replaceBrace(s);
+  if (r == OK)
+    cout << s;
+  else if (r == expectedOpeningBracket)
+    perror("Expected: '('");
+  else
+    perror("Expected: ')'");
 
   return 0;
 }
