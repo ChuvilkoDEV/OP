@@ -18,22 +18,21 @@ struct equation {
   double c;
 };
 
-istream &operator >> (istream &in, point &p) {
+istream &operator>>(istream &in, point &p) {
   in >> p.x >> p.y;
   return in;
 }
 
 // Хранит в себе уравнение прямой
 class Line {
-private:
+  private:
   point p1_; // Левая по х граница отрезка
   point p2_; // Правая по х граница отрезка
 
   // Ax + By + C = 0
   equation equation_;
 
-
-public:
+  public:
   // Формирует уравнение прямой по двум точкам
   void setLine(point p1, point p2) {
     if (p1.x < p2.x) {
@@ -75,6 +74,16 @@ public:
   double getDistanceToPoint(point &p) const {
     return abs(equation_.a * p.x + equation_.b * p.y + equation_.c) / len();
   }
+
+  bool isCrossing(Line &l) {
+    double xCrossing =
+      (equation_.b * l.getEquation().c - l.getEquation().b * equation_.c) /
+      (l.getEquation().b * equation_.a - equation_.b * l.getEquation().a);
+    double yCrossing =
+      -(equation_.c + equation_.a * xCrossing) / equation_.b;
+    return (xCrossing <= p2_.x == xCrossing >= p1_.x) &&
+           (yCrossing <= p2_.y == yCrossing >= p1_.y);
+  }
 };
 
 // Возвращает минимальное значение, среди 4 переменных типа double
@@ -97,14 +106,15 @@ double getMinLen(point &p1, point &p2, point &p3, point &p4) {
   );
 }
 
+
 void tests() {
   point p1{}, p2{}, p3{}, p4{};
   assert(abs(getMinLen(
     p1 = {1, 1},
-    p2 = {4, 3},
-    p3 = {4, 6},
-    p4 = {8, 5}
-    ) - 0.5547) <= EPS);
+    p2 = {2, 3},
+    p3 = {2, 2},
+    p4 = {4, 2}
+  ) - 0.4472) <= EPS);
   assert(abs(getMinLen(
     p1 = {1, 1},
     p2 = {1, 2},
@@ -129,7 +139,11 @@ int main() {
   point p1{}, p2{}, p3{}, p4{};
   cin >> p1 >> p2 >> p3 >> p4;
 
-  cout << getMinLen(p1, p2, p3, p4);
+  Line l1{}, l2{};
+  l1.setLine(p1, p2);
+  l2.setLine(p3, p4);
+
+  cout << l1.isCrossing(l2);
 
   return 0;
 }
