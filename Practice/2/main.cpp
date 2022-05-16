@@ -48,6 +48,10 @@ class Line {
     equation_.c = p1.x * p2.y - p2.x * p1.y;
   }
 
+  void setEquation(equation e) {
+    equation_ = e;
+  }
+
   // Возвращает уравнение прямой
   equation getEquation() {
     return equation_;
@@ -75,14 +79,23 @@ class Line {
     return abs(equation_.a * p.x + equation_.b * p.y + equation_.c) / len();
   }
 
-  bool isCrossing(Line &l) {
+  bool isCrossing(equation &e) const {
     double xCrossing =
-      (equation_.b * l.getEquation().c - l.getEquation().b * equation_.c) /
-      (l.getEquation().b * equation_.a - equation_.b * l.getEquation().a);
+      (equation_.b * e.c - e.b * equation_.c) /
+      (e.b * equation_.a - equation_.b * e.a);
     double yCrossing =
       -(equation_.c + equation_.a * xCrossing) / equation_.b;
+
     return (xCrossing <= p2_.x == xCrossing >= p1_.x) &&
            (yCrossing <= p2_.y == yCrossing >= p1_.y);
+  }
+
+  void getNormalFromPoint(equation &n, point p) {
+    n = (equation) {
+      equation_.b,
+      equation_.a,
+      -(equation_.a * p.x + equation_.b * p.y)
+    };
   }
 };
 
@@ -105,7 +118,6 @@ double getMinLen(point &p1, point &p2, point &p3, point &p4) {
     l2.getDistanceToPoint(p2)
   );
 }
-
 
 void tests() {
   point p1{}, p2{}, p3{}, p4{};
