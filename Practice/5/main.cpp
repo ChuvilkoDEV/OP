@@ -31,12 +31,12 @@ void increase(vector<int> &v, int n) {
   List maxLength = din[0];
   for (int i = 1; i < n; i++) {
     if (v[i] > v[i - 1]) {
-      din[i] = (List) {&din[i - 1], v[i - 1], din[i - 1].index + 1};
+      din[i] = (List) {&din[i - 1], v[i], din[i - 1].index + 1};
     } else {
       List longestSequence = (List) {nullptr, v[i], 1};
       for (int j = 0; j < i; j++)
-        if (v[i] > v[j] && din[j].index > longestSequence.index)
-          longestSequence = (List) {&din[j], v[j], din[j].index + 1};
+        if (v[i] > v[j] && din[j].index >= longestSequence.index)
+          longestSequence = (List) {&din[j], v[i], din[j].index + 1};
       din[i] = longestSequence;
     }
     if (din[i].index > maxLength.index)
@@ -48,6 +48,8 @@ void increase(vector<int> &v, int n) {
     v[i] = ptr->value;
     ptr = ptr->parent;
   }
+  while (v.size() > maxLength.index)
+    v.pop_back();
 }
 
 void test_default() {
