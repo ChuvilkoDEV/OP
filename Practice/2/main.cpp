@@ -35,7 +35,7 @@ class Equation {
   void setNormalFromPoint(Equation n, Point p) {
     a = n.b;
     b = n.a;
-    c = -(n.a * p.x + n.b * p.y);
+    c = -(a * p.x + b * p.y);
   }
 };
 
@@ -44,7 +44,7 @@ istream &operator>>(istream &in, Point &p) {
   return in;
 }
 
-// Хранит в себе уравнение прямой
+// Хранит в себе уравнение прямой.
 class Line {
   private:
   Point p1_; // Левая по х граница отрезка
@@ -54,7 +54,7 @@ class Line {
   Equation equation_;
 
   public:
-  // Формирует уравнение прямой по двум точкам
+  // Формирует уравнение прямой по двум точкам.
   void setLine(Point p1, Point p2) {
     if (p1.x < p2.x) {
       p1_ = p1;
@@ -71,42 +71,60 @@ class Line {
     equation_ = e;
   }
 
-  // Возвращает уравнение прямой
+  // Возвращает уравнение прямой.
   Equation getEquation() {
     return equation_;
   }
 
-  // Возвращает координаты первой точки
+  // Возвращает координаты первой точки.
   Point getPoint1() {
     return p1_;
   }
 
-  // Возвращает координаты второй точки
+  // Возвращает координаты второй точки.
   Point getPoint2() {
     return p2_;
   }
 
-  // Возвращает длину отрезка
+  // Возвращает длину отрезка.
   [[nodiscard]] double len() const {
     return sqrt(
       pow(equation_.a, 2) + pow(equation_.b, 2)
     );
   }
 
-  // Возвращает расстояние до точки
+  // Возвращает расстояние до точки.
   double getDistanceToPoint(Point &p) const {
     return abs(equation_.a * p.x + equation_.b * p.y + equation_.c) / len();
   }
 
+  // Возвращает true, если прямая e пересекает отрезок. Иначе false.
   bool isCrossing(Equation &e) const {
-    double xCrossing =
-      (equation_.b * e.c - e.b * equation_.c) /
-      (e.b * equation_.a - equation_.b * e.a);
-    double yCrossing =
-      -(equation_.c + equation_.a * xCrossing) / equation_.b;
+    double xCrossing;
+    if (e.b * equation_.a == equation_.b * e.a)
+      xCrossing = p1_.x;
+    else
+      xCrossing =
+        (equation_.b * e.c - e.b * equation_.c) /
+        (e.b * equation_.a - equation_.b * e.a);
+
+    double yCrossing;
+    if (equation_.b == 0)
+      yCrossing = p1_.y;
+    else
+      yCrossing =
+        -(equation_.c + equation_.a * xCrossing) / equation_.b;
 
     return (xCrossing <= p2_.x == xCrossing >= p1_.x) &&
            (yCrossing <= p2_.y == yCrossing >= p1_.y);
+  }
+
+  double getMinLenToPoint(Point p) {
+    Equation n{};
+    n.setNormalFromPoint(equation_, p);
+    if (isCrossing(n))
+      return getDistanceToPoint(p);
+    return min(p.getDistance(p1_), p.getDistance(p2_));
   }
 };
 
@@ -116,34 +134,21 @@ double min(double l1, double l2, double l3, double l4) {
 }
 
 // Возвращает минимальную длину, между отрезком, ограниченным точками p1 и p2 и отрезком, ограниченным точками p3, p4
-double getMinLen(Point &p1, Point &p2, Point &p3, Point &p4) {
-  vector<double> lens{};
-  Line l1{};
-  l1.setLine(p1, p2);
-  Line l2{};
-  l2.setLine(p3, p4);
-  Equation n{};
+double getMinLen(Line &l1, Line &l2) {
+  cout << l1.getMinLenToPoint(l2.getPoint1()) << ' '
+       << l1.getMinLenToPoint(l2.getPoint2()) << ' '
+       << l2.getMinLenToPoint(l1.getPoint1()) << ' '
+       << l2.getMinLenToPoint(l1.getPoint2()) << '\n';
 
-  n.setNormalFromPoint(l1.getEquation(), p3);
-  if (l1.isCrossing(n))
-    lens.push_back(l1.getDistanceToPoint(p3));
-  n.setNormalFromPoint(l1.getEquation(), p4);
-  if (l1.isCrossing(n))
-    lens.push_back(l1.getDistanceToPoint(p4));
-  n.setNormalFromPoint(l2.getEquation(), p1);
-  if (l1.isCrossing(n))
-    lens.push_back(l2.getDistanceToPoint(p1));
-  n.setNormalFromPoint(l2.getEquation(), p2);
-  if (l1.isCrossing(n))
-    lens.push_back(l2.getDistanceToPoint(p2));
-
-  double minL = lens[0];
-  for (int i = 1; i < lens.size(); i++) {
-    minL = min(minL, lens[i]);
-  }
-  return minL;
+  return min(
+    l1.getMinLenToPoint(l2.getPoint1()),
+    l1.getMinLenToPoint(l2.getPoint2()),
+    l2.getMinLenToPoint(l1.getPoint1()),
+    l2.getMinLenToPoint(l1.getPoint2())
+  );
 }
 
+/*
 void tests() {
   Point p1{}, p2{}, p3{}, p4{};
   assert(abs(getMinLen(
@@ -171,6 +176,7 @@ void tests() {
     p4 = {0, 0}
   ) - 0) <= EPS);
 }
+*/
 
 int main() {
   Point p1{}, p2{}, p3{}, p4{};
@@ -180,7 +186,7 @@ int main() {
   l1.setLine(p1, p2);
   l2.setLine(p3, p4);
 
-  cout << getMinLen(p1, p2, p3, p4);
+  cout << getMinLen(l1, l2);
 
   return 0;
 }
