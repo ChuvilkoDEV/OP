@@ -2,7 +2,7 @@
 #include <vector>
 #include <cassert>
 
-#define DEBUG
+//#define DEBUG
 
 using namespace std;
 
@@ -23,13 +23,13 @@ struct List {
 };
 
 // Возвращает длиннейшую возрастающую последовательность
-void increase(vector<int> &v, int n) {
+void increase(vector<int> &v) {
   // Первый элемент указывает на родителя. Второй на порядковый номер
-  vector<List> din(n);
+  vector<List> din(v.size());
 
   din[0] = (List) {nullptr, v[0], 1};
   List maxLength = din[0];
-  for (int i = 1; i < n; i++) {
+  for (int i = 1; i < v.size(); i++) {
     if (v[i] > v[i - 1]) {
       din[i] = (List) {&din[i - 1], v[i], din[i - 1].index + 1};
     } else {
@@ -53,31 +53,28 @@ void increase(vector<int> &v, int n) {
 }
 
 void test_default() {
-  int n = 5;
-  vector<int> v = {2, 12, 13, 3, 4, 5};
-  vector<int> res = {2, 3, 4, 5};
+  vector<int> v = {1, 12, 13, 4, 5, 6};
+  vector<int> res = {1, 4, 5, 6};
 
-  increase(v, n);
+  increase(v);
 
   assert(v == res);
 }
 
 void test_allIncrease() {
-  int n = 5;
   vector<int> v = {1, 2, 3, 4, 5, 6};
   vector<int> res = {1, 2, 3, 4, 5, 6};
 
-  increase(v, n);
+  increase(v);
 
   assert(v == res);
 }
 
 void test_allDecrease() {
-  int n = 5;
   vector<int> v = {6, 5, 4, 3, 2, 1};
   vector<int> res = {6};
 
-  increase(v, n);
+  increase(v);
 
   assert(v == res);
 }
@@ -100,7 +97,7 @@ int main() {
   vector<int> v(n);
   inputVector(v);
 
-  increase(v, n);
+  increase(v);
 
   outputVector(v);
 #endif
