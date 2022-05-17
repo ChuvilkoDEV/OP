@@ -12,7 +12,9 @@ void outputVector(vector<int> &v) {
     cout << i << ' ';
 }
 
-void shakalJPEG(string &s, vector<int> &byteSet) {
+// Преобразовывает массив представленный в виде двоичных кодов, используя
+// байтовое представление цепочек
+void squeeze(string &s, vector<int> &byteSet) {
   bool isUnit = true;
   int counter = 0;
   for (auto &i: s) {
@@ -27,23 +29,14 @@ void shakalJPEG(string &s, vector<int> &byteSet) {
   byteSet.push_back(counter);
 }
 
-bool isEqual(vector<int> &v1, vector<int> &v2) {
-  if (v1.size() != v2.size())
-    return false;
-  for (int i = 0; i < v1.size(); i++)
-    if (v1[i] != v2[i])
-      return false;
-  return true;
-}
-
 void test_default() {
   string s = "111110010011100101010";
   vector<int> shakal{};
   vector<int> res = {5, 2, 1, 2, 3, 2, 1, 1, 1, 1, 1, 1};
 
-  shakalJPEG(s, shakal);
+  squeeze(s, shakal);
 
-  assert(isEqual(shakal, res));
+  assert(shakal == res);
 }
 
 void test_onlyUnit() {
@@ -51,9 +44,9 @@ void test_onlyUnit() {
   vector<int> shakal{};
   vector<int> res = {10};
 
-  shakalJPEG(s, shakal);
+  squeeze(s, shakal);
 
-  assert(isEqual(shakal, res));
+  assert(shakal == res);
 }
 
 void test_onlyZero() {
@@ -61,9 +54,9 @@ void test_onlyZero() {
   vector<int> shakal{};
   vector<int> res = {0, 10};
 
-  shakalJPEG(s, shakal);
+  squeeze(s, shakal);
 
-  assert(isEqual(shakal, res));
+  assert(shakal == res);
 }
 
 void tests() {
@@ -83,7 +76,7 @@ int main() {
   // первый нечетные элементы - 1; Остальные - 0
   vector<int> shakalSet;
 
-  shakalJPEG(s, shakalSet);
+  squeeze(s, shakalSet);
 
   outputVector(shakalSet);
 #endif
