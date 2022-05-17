@@ -16,36 +16,48 @@ void outputVector(vector<int> &v) {
     cout << i << ' ';
 }
 
+struct List {
+  List *parent;
+  int value;
+  int index;
+};
+
+// Возвращает длиннейшую возрастающую последовательность
 void increase(vector<int> &v, int n) {
-  int lastMax = v[0];
-  int ptr = 0;
+  // Первый элемент указывает на родителя. Второй на порядковый номер
+  vector<List> din(n);
+
+  din[0] = (List) {nullptr, v[0], 1};
+  List maxLength = din[0];
   for (int i = 1; i < n; i++) {
-    if (lastMax < v[i]) {
-      v[ptr++] = lastMax;
-      lastMax = v[i];
+    if (v[i] > v[i - 1]) {
+      din[i] = (List) {&din[i - 1], v[i - 1], din[i - 1].index + 1};
+    } else {
+      List longestSequence = (List) {nullptr, v[i], 1};
+      for (int j = 0; j < i; j++)
+        if (v[i] > v[j] && din[j].index > longestSequence.index)
+          longestSequence = (List) {&din[j], v[j], din[j].index + 1};
+      din[i] = longestSequence;
     }
+    if (din[i].index > maxLength.index)
+      maxLength = din[i];
   }
-  v[ptr++] = lastMax;
 
-  for (int i = ptr; i < n; i++)
-    v.pop_back();
-}
-
-bool isEqual(vector<int> &v1, vector<int> &v2, int n) {
-  for (int i = 0; i < n; i++)
-    if (v1[i] != v2[i])
-      return false;
-  return true;
+  List *ptr = &maxLength;
+  for (int i = maxLength.index - 1; i >= 0; i--) {
+    v[i] = ptr->value;
+    ptr = ptr->parent;
+  }
 }
 
 void test_default() {
   int n = 5;
-  vector<int> v = {2, 5, 3, 6, 1};
-  vector<int> res = {2, 5, 6};
+  vector<int> v = {2, 12, 13, 3, 4, 5};
+  vector<int> res = {2, 3, 4, 5};
 
   increase(v, n);
 
-  assert(v.size() == res.size() && isEqual(v, res, res.size()));
+  assert(v == res);
 }
 
 void test_allIncrease() {
@@ -55,7 +67,7 @@ void test_allIncrease() {
 
   increase(v, n);
 
-  assert(v.size() == res.size() && isEqual(v, res, res.size()));
+  assert(v == res);
 }
 
 void test_allDecrease() {
@@ -65,7 +77,7 @@ void test_allDecrease() {
 
   increase(v, n);
 
-  assert(v.size() == res.size() && isEqual(v, res, res.size()));
+  assert(v == res);
 }
 
 void tests() {
