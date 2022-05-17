@@ -1,10 +1,8 @@
 #include <iostream>
 #include <cmath>
 #include <cassert>
-#include <vector>
 
 #define EPS 0.1
-//#define DEBUG
 
 using namespace std;
 
@@ -135,11 +133,6 @@ double min(double l1, double l2, double l3, double l4) {
 
 // Возвращает минимальную длину, между отрезком, ограниченным точками p1 и p2 и отрезком, ограниченным точками p3, p4
 double getMinLen(Line &l1, Line &l2) {
-  cout << l1.getMinLenToPoint(l2.getPoint1()) << ' '
-       << l1.getMinLenToPoint(l2.getPoint2()) << ' '
-       << l2.getMinLenToPoint(l1.getPoint1()) << ' '
-       << l2.getMinLenToPoint(l1.getPoint2()) << '\n';
-
   return min(
     l1.getMinLenToPoint(l2.getPoint1()),
     l1.getMinLenToPoint(l2.getPoint2()),
@@ -148,37 +141,56 @@ double getMinLen(Line &l1, Line &l2) {
   );
 }
 
-/*
-void tests() {
-  Point p1{}, p2{}, p3{}, p4{};
-  assert(abs(getMinLen(
-    p1 = {1, 1},
-    p2 = {2, 3},
-    p3 = {2, 2},
-    p4 = {4, 2}
-  ) - 0.4472) <= EPS);
-  assert(abs(getMinLen(
-    p1 = {1, 1},
-    p2 = {1, 2},
-    p3 = {2, 1},
-    p4 = {2, 2}
-  ) - 1) <= EPS);
-  assert(abs(getMinLen(
-    p1 = {1, 1},
-    p2 = {1, 2},
-    p3 = {2, 1},
-    p4 = {2, 2}
-  ) - 1) <= EPS);
-  assert(abs(getMinLen(
-    p1 = {0, 0},
-    p2 = {2, 2},
-    p3 = {-5, -5},
-    p4 = {0, 0}
-  ) - 0) <= EPS);
+void test_default() {
+  Point p1{1, 1}, p2{2, 3}, p3{2, 2}, p4{4, 2};
+  Line l1{}, l2{};
+  l1.setLine(p1, p2);
+  l2.setLine(p3, p4);
+
+  assert(abs(getMinLen(l1, l2) - 0.4472) <= EPS);
 }
-*/
+
+void test_verticalLines() {
+  Point p1{1, 1}, p2{1, 2}, p3{2, 1}, p4{2, 2};
+  Line l1{}, l2{};
+  l1.setLine(p1, p2);
+  l2.setLine(p3, p4);
+
+  assert(abs(getMinLen(l1, l2) - 1) <= EPS);
+}
+
+void test_horizontalLines() {
+  Point p1{1, 1}, p2{2, 1}, p3{1, 2}, p4{2, 2};
+  Line l1{}, l2{};
+  l1.setLine(p1, p2);
+  l2.setLine(p3, p4);
+
+  assert(abs(getMinLen(l1, l2) - 1) <= EPS);
+}
+
+void test_crossingLines() {
+  Point p1{0, 0}, p2{2, 2}, p3{-5, 5}, p4{0, 0};
+  Line l1{}, l2{};
+  l1.setLine(p1, p2);
+  l2.setLine(p3, p4);
+
+  assert(abs(getMinLen(l1, l2) - 0) <= EPS);
+}
+
+void tests() {
+  test_default();
+  test_verticalLines();
+  test_horizontalLines();
+  test_crossingLines();
+}
+
+#define DEBUG
 
 int main() {
+#ifdef DEBUG
+  tests();
+#endif
+#ifndef DEBUG
   Point p1{}, p2{}, p3{}, p4{};
   cin >> p1 >> p2 >> p3 >> p4;
 
@@ -187,6 +199,7 @@ int main() {
   l2.setLine(p3, p4);
 
   cout << getMinLen(l1, l2);
+#endif
 
   return 0;
 }
