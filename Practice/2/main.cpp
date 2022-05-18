@@ -69,7 +69,7 @@ class Line {
     equation_.setEquation(p1, p2);
   }
 
-  // Присваивает уравнение e 
+  // Присваивает уравнение e
   void setEquation(Equation e) {
     equation_ = e;
   }
