@@ -11,9 +11,10 @@ class Point {
   double x;
   double y;
 
-  [[nodiscard]] double getDistance(Point p2) const {
+  // Возвращает дистанцию до точки
+  [[nodiscard]] double getDistance(Point p) const {
     return sqrt(
-      pow(y - p2.y, 2) + pow(p2.x - x, 2)
+      pow(y - p.y, 2) + pow(p.x - x, 2)
     );
   }
 };
@@ -24,12 +25,15 @@ class Equation {
   double b;
   double c;
 
+  // Устанавливает выражение для прямой, проходящих через точки p1 и p2
   void setEquation(Point &p1, Point &p2) {
     a = p1.y - p2.y;
     b = p2.x - p1.x;
     c = p1.x * p2.y - p2.x * p1.y;
   }
 
+  // Составляет уравнение прямой, которая является прямой для уравнения
+  // n и проходящую через точку p
   void setNormalFromPoint(Equation n, Point p) {
     a = n.b;
     b = n.a;
@@ -65,6 +69,7 @@ class Line {
     equation_.setEquation(p1, p2);
   }
 
+  // Присваивает уравнение e 
   void setEquation(Equation e) {
     equation_ = e;
   }
