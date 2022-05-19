@@ -50,6 +50,9 @@ bool isReal(vector<vector<bool>> &field, vector<vector<bool>> &real) {
   isReal_(real.size() - 1, real[0].size() - 1, field, real);
   return real[real.size() - 1][real.size() - 1];
 }
+
+// Какой-то код дохуя важный
+
 /*
 void outputPath(vector<vector<bool>> &field, vector<vector<bool>> &real) {
   bool isFinal = true;
