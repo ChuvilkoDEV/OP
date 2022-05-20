@@ -298,180 +298,53 @@ void UOAS_delete(unordered_array_set set) {
   free(set.data);
 }
 
-
-class InToPost {
-  private:
-  stack<char> stackOperators;
-  string postfixNotation;
-  string input;
-
-  public:
-  explicit InToPost(string input) :
-    input(std::move(input)) {};
-
-  void gotOper(char oper, int priorityNew) {
-    while (!this->stackOperators.empty()) {
-      char topOperator = this->stackOperators.top();
-      if (topOperator != '(') {
-        int priorityTop;
-        if (topOperator == '!')
-          priorityTop = 1;
-        else if (topOperator == '&' || topOperator == '-' ||
-                 topOperator == '^')
-          priorityTop = 2;
-        else priorityTop = 3;
-
-        if (priorityNew >= priorityTop) {
-          this->postfixNotation += topOperator;
-          this->stackOperators.pop();
-        } else
-          break;
-
-      } else {
-        break;
-      }
-    }
-    this->stackOperators.push(oper);
-  }
-
-  void gotParen() {
-    while (!this->stackOperators.empty()) {
-      char i = this->stackOperators.top();
-      this->stackOperators.pop();
-      if (i == u'(')
-        break;
-      else
-        this->postfixNotation += i;
-    }
-  }
-
-  void makePostfixNotation(const string &infixNotation) {
-    for (auto i: infixNotation) {
-      switch (i) {
-        case 'u': {
-          gotOper(i, 3);
-          break;
-        }
-        case '-':
-        case '&':
-        case '^': {
-          gotOper(i, 2);
-          break;
-        }
-        case '!': {
-          gotOper(i, 1);
-          break;
-        }
-        case '(': {
-          this->stackOperators.push(i);
-          break;
-        }
-        case ')': {
-          gotParen();
-          break;
-        }
-        default:
-          postfixNotation += i;
-      }
-
-    }
-    while (!this->stackOperators.empty()) {
-      this->postfixNotation += this->stackOperators.top();
-      this->stackOperators.pop();
-    }
-  }
-
-  string getPostfixNotation() {
-    makePostfixNotation(input);
-    return this->postfixNotation;
-  }
+// Структура, которая хранит оператор и его приоритет
+struct priority {
+  char operator_;
+  int priority_;
 };
 
-class SolverPost {
+class PolishEntry {
   private:
-  int countSets;
-  string postExpression;
-  vector<unordered_array_set> sets = {
-    UOAS_create_from_array((int[]) {1, 3, 5, 7}, 4),
-    UOAS_create_from_array((int[]) {2, 3, 6, 7}, 4),
-    UOAS_create_from_array((int[]) {4, 5, 6, 7}, 4),
-  };
-  stack<unordered_array_set> executionStack;
-  vector<bool> truthTable;
+  string standardExpression_{};
+  string polishExpression_{};
+  stack<priority> operators_{};
+  stack<char> operands_{};
 
-
-  public:
-  SolverPost(int numSets, string postExpression) :
-    countSets(numSets), postExpression(std::move(postExpression)) {};
-
-  unordered_array_set getTruthTable() {
-    this->truthTable.clear();
-    while (!this->executionStack.empty())
-      this->executionStack.pop();
-
-    int curIndex = 0;
-    while (curIndex < postExpression.size()) {
-      char curSymbol = this->postExpression[curIndex];
-      if ('A' <= curSymbol && curSymbol <= 'Z') {
-        this->executionStack.push(this->sets[curSymbol - 'A']);
-      } else {
-        if (curSymbol == 'u') {
-          unordered_array_set set1 = this->executionStack.top();
-          this->executionStack.pop();
-          unordered_array_set set2 = this->executionStack.top();
-          this->executionStack.pop();
-
-          this->executionStack.push(UOAS_union(set1, set2));
-
-        } else if (curSymbol == '&') {
-          unordered_array_set set1 = this->executionStack.top();
-          this->executionStack.pop();
-          unordered_array_set set2 = this->executionStack.top();
-          this->executionStack.pop();
-
-          this->executionStack.push(
-            UOAS_intersection(set1, set2));
-
-        } else if (curSymbol == '^') {
-          unordered_array_set set1 = this->executionStack.top();
-          this->executionStack.pop();
-          unordered_array_set set2 = this->executionStack.top();
-          this->executionStack.pop();
-
-          this->executionStack.push(
-            UOAS_symmetricDifference(set1, set2));
-
-        } else if (curSymbol == '-') {
-          unordered_array_set set1 = this->executionStack.top();
-          this->executionStack.pop();
-          unordered_array_set set2 = this->executionStack.top();
-          this->executionStack.pop();
-
-          this->executionStack.push(UOAS_difference(set2, set1));
-
-        } else if (curSymbol == '!') {
-          unordered_array_set set1 = this->executionStack.top();
-          this->executionStack.pop();
-
-          int universumI[]{1, 2, 3, 4, 5, 6, 7};
-          unordered_array_set universum = UOAS_create_from_array
-            (universumI, 7);
-          this->executionStack.push(
-            UOAS_complement(set1, universum));
+  bool setPolish() {
+    for (int i = 0; i < standardExpression_.size(); i++) {
+      char c = standardExpression_[i];
+      if (c == '(') {
+        PolishEntry p{};
+        p.setExpression((string &) (standardExpression_[i]));
+        string tmp = p.getPolish();
+        for (auto &j: tmp) {
+          polishExpression_.push_back(j);
+        }
+      } else if (c == '&' || c == '-' || c == '^') {
+        if (operators_.size() > 1) {
+          polis
         }
       }
-      curIndex++;
     }
+  }
 
-    return executionStack.top();
+  char getOperand() {
+    char tmp = operands_.top();
+    operands_.pop();
+    return tmp;
+  }
+
+  public:
+  void setExpression(string &s) {
+    standardExpression_ = s;
+    setPolish();
+  }
+
+  string getPolish() {
+    return polishExpression_;
   }
 };
-
-void printBinValue(int i, int numDigits) {
-  for (int j = numDigits - 1; j >= 0; j--) {
-    cout << ((i & (1 << j)) >> j);
-  }
-}
 
 int main() {
   string input1, input2;
