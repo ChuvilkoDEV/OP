@@ -310,7 +310,7 @@ class PolishEntry {
   string standardExpression_{};
   string polishExpression_{};
   stack<priority> operators_{};
-  stack<char> operands_{};
+  //stack<char> operands_{};
   int ptr = 0;
 
   void setPolish() {
@@ -328,51 +328,27 @@ class PolishEntry {
       } else if (c == ')') {
         break;
       } else if (c == '!') {
-        if (!operands_.empty()) {
-          polishExpression_.push_back(operands_.top());
-          operands_.pop();
-          polishExpression_.push_back(c);
-        } else {
-          operators_.push((priority) {c, 1});
-        }
+        operators_.push((priority) {c, 1});
       } else if (c == '&' || c == '^' || c == '-') {
-        while (!operators_.empty() && !operands_.empty() && operators_.top().priority_ <= 2) {
-          polishExpression_.push_back(operands_.top());
-          operands_.pop();
+        while (!operators_.empty() && operators_.top().priority_ <= 2) {
           polishExpression_.push_back(operators_.top().operator_);
           operators_.pop();
         }
-        if (!operators_.empty() && operators_.top().priority_ == 3) {
-          polishExpression_.push_back(operands_.top());
-          operands_.pop();
-        }
         operators_.push((priority) {c, 2});
       } else if (c == 'u') {
-        while (!operators_.empty() && !operands_.empty() && operators_.top().priority_ <= 3) {
-          polishExpression_.push_back(operands_.top());
-          operands_.pop();
+        while (!operators_.empty() && operators_.top().priority_ <= 3) {
           polishExpression_.push_back(operators_.top().operator_);
           operators_.pop();
         }
         operators_.push((priority) {c, 3});
       } else {
-        operands_.push(c);
+        polishExpression_.push_back(c);
       }
-    }
-    while (!operands_.empty()) {
-      polishExpression_.push_back(operands_.top());
-      operands_.pop();
     }
     while (!operators_.empty()) {
       polishExpression_.push_back(operators_.top().operator_);
       operators_.pop();
     }
-  }
-
-  char getOperand() {
-    char tmp = operands_.top();
-    operands_.pop();
-    return tmp;
   }
 
   public:
