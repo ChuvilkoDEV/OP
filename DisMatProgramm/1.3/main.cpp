@@ -310,36 +310,43 @@ class PolishEntry {
   string standardExpression_{};
   string polishExpression_{};
   stack<priority> operators_{};
-  //stack<char> operands_{};
   int ptr = 0;
 
   void setPolish() {
     for (; ptr < standardExpression_.size(); ptr++) {
       char c = standardExpression_[ptr];
-      if (c == '(') {
-        operators_.push((priority) {c, 4});
-      } else if (c == ')') {
-        while (operators_.top().operator_ != '(') {
-          polishExpression_.push_back(operators_.top().operator_);
+      switch (c) {
+        case '(':
+          operators_.push((priority) {c, 4});
+          break;
+        case ')':
+          while (operators_.top().operator_ != '(') {
+            polishExpression_.push_back(operators_.top().operator_);
+            operators_.pop();
+          }
           operators_.pop();
-        }
-        operators_.pop();
-      } else if (c == '!') {
-        operators_.push((priority) {c, 1});
-      } else if (c == '&' || c == '^' || c == '-') {
-        while (!operators_.empty() && operators_.top().priority_ <= 2) {
-          polishExpression_.push_back(operators_.top().operator_);
-          operators_.pop();
-        }
-        operators_.push((priority) {c, 2});
-      } else if (c == 'u') {
-        while (!operators_.empty() && operators_.top().priority_ <= 3) {
-          polishExpression_.push_back(operators_.top().operator_);
-          operators_.pop();
-        }
-        operators_.push((priority) {c, 3});
-      } else {
-        polishExpression_.push_back(c);
+          break;
+        case '!':
+          operators_.push((priority) {c, 1});
+          break;
+        case '&':
+        case '^':
+        case '-':
+          while (!operators_.empty() && operators_.top().priority_ <= 2) {
+            polishExpression_.push_back(operators_.top().operator_);
+            operators_.pop();
+          }
+          operators_.push((priority) {c, 2});
+          break;
+        case 'u':
+          while (!operators_.empty() && operators_.top().priority_ <= 3) {
+            polishExpression_.push_back(operators_.top().operator_);
+            operators_.pop();
+          }
+          operators_.push((priority) {c, 3});
+          break;
+        default:
+          polishExpression_.push_back(c);
       }
     }
     while (!operators_.empty()) {
@@ -349,14 +356,16 @@ class PolishEntry {
   }
 
   public:
-  void setExpression(string *s) {
-    standardExpression_ = *s;
-    setPolish();
-    ptr = 0;
+  explicit PolishEntry(string &s) {
+    setExpression(s);
   }
 
-  int getPtr() const {
-    return ptr;
+  PolishEntry() = default;
+
+  void setExpression(string &s) {
+    standardExpression_ = s;
+    setPolish();
+    ptr = 0;
   }
 
   string getPolish() {
@@ -365,9 +374,8 @@ class PolishEntry {
 };
 
 int main() {
-  PolishEntry p;
-  string s = "!(!(A-C)&!(C-A-B))";
-  p.setExpression(&s);
+  string s = "A&!Cu!A&!B&C";
+  PolishEntry p{s};
 
   cout << p.getPolish();
 }
@@ -375,5 +383,5 @@ int main() {
 // (0) A-B-CuA&B-CuC-A-B    // Ответ: AB-C-AB&C-uCA-B-u
 // (1) A&!Cu!A&!B&C         // Ответ: AC!&A!B!&C&u
 // (2) A-CuC-A-B            // Ответ: AC-CA-B-u
-// (3) !(!(A-C)&!(C-A-B))
-// (4) (A-C)u(C-A-B)
+// (3) !(!(A-C)&!(C-A-B))   // Ответ: AC-!CA-B-!&!
+// (4) (A-C)u(C-A-B)        // Ответ: AC-CA-B-u
