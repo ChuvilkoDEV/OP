@@ -304,28 +304,68 @@ struct priority {
   int priority_;
 };
 
+
 class PolishEntry {
   private:
   string standardExpression_{};
   string polishExpression_{};
   stack<priority> operators_{};
   stack<char> operands_{};
+  int ptr = 0;
 
-  bool setPolish() {
-    for (int i = 0; i < standardExpression_.size(); i++) {
-      char c = standardExpression_[i];
+  void setPolish() {
+    polishExpression_.push_back(standardExpression_[0]);
+    ptr++;
+    for (; ptr < standardExpression_.size(); ptr++) {
+      char c = standardExpression_[ptr];
       if (c == '(') {
         PolishEntry p{};
-        p.setExpression((string &) (standardExpression_[i]));
+        p.setExpression((string &) (standardExpression_[ptr]));
+        ptr += p.getPtr();
         string tmp = p.getPolish();
-        for (auto &j: tmp) {
+        for (auto &j: tmp)
           polishExpression_.push_back(j);
+      } else if (c == ')') {
+        break;
+      } else if (c == '!') {
+        if (!operands_.empty()) {
+          polishExpression_.push_back(operands_.top());
+          operands_.pop();
+          polishExpression_.push_back(c);
+        } else {
+          operators_.push((priority) {c, 1});
         }
-      } else if (c == '&' || c == '-' || c == '^') {
-        if (operators_.size() > 1) {
-          polis
+      } else if (c == '&' || c == '^' || c == '-') {
+        while (!operators_.empty() && !operands_.empty() && operators_.top().priority_ <= 2) {
+          polishExpression_.push_back(operands_.top());
+          operands_.pop();
+          polishExpression_.push_back(operators_.top().operator_);
+          operators_.pop();
         }
+        if (!operators_.empty() && operators_.top().priority_ == 3) {
+          polishExpression_.push_back(operands_.top());
+          operands_.pop();
+        }
+        operators_.push((priority) {c, 2});
+      } else if (c == 'u') {
+        while (!operators_.empty() && !operands_.empty() && operators_.top().priority_ <= 3) {
+          polishExpression_.push_back(operands_.top());
+          operands_.pop();
+          polishExpression_.push_back(operators_.top().operator_);
+          operators_.pop();
+        }
+        operators_.push((priority) {c, 3});
+      } else {
+        operands_.push(c);
       }
+    }
+    while (!operands_.empty()) {
+      polishExpression_.push_back(operands_.top());
+      operands_.pop();
+    }
+    while (!operators_.empty()) {
+      polishExpression_.push_back(operators_.top().operator_);
+      operators_.pop();
     }
   }
 
@@ -339,6 +379,11 @@ class PolishEntry {
   void setExpression(string &s) {
     standardExpression_ = s;
     setPolish();
+    ptr = 0;
+  }
+
+  int getPtr() const {
+    return ptr;
   }
 
   string getPolish() {
@@ -347,35 +392,15 @@ class PolishEntry {
 };
 
 int main() {
-  string input1, input2;
-  cin >> input1 >> input2;
+  PolishEntry p;
+  string s = "A-B-CuA&B-CuC-A-B";
+  p.setExpression(s);
 
-  InToPost translator1(input1);
-  SolverPost solver1(3, translator1.getPostfixNotation());
-  unordered_array_set set1 = solver1.getTruthTable();
-  for (int i = 0; i < set1.size; i++) {
-    cout << set1.data[i] << " ";
-  }
-
-  cout << "\n";
-
-  InToPost translator2(input2);
-  SolverPost solver2(3, translator2.getPostfixNotation());
-  unordered_array_set set2 = solver2.getTruthTable();
-  for (int i = 0; i < set2.size; i++) {
-    cout << set2.data[i] << " ";
-  }
-
-  cout << "\n";
-
-  if (UOAS_isEqual(set1, set2))
-    cout << "Equal";
-  else
-    cout << "Not Equal";
-
-  return 0;
-
+  cout << p.getPolish();
 }
-//
-//(A&C)u(A&!B)
-//!(!(A&C)&!(A-B))
+
+// (0) A-B-CuA&B-CuC-A-B
+// (1) A&!Cu!A&!B&C
+// (2) A-CuC-A-B
+// (3) !(!(A-C)&!(C-A-B))
+// (4) (A-C)u(C-A-B)
