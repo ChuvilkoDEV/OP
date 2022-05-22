@@ -40,14 +40,11 @@ class PolishEntry {
         case '&':
         case '^':
         case '-':
-          while (!operators_.empty() && operators_.top().priority_ <= 2)
-            push(operators_.top().operator_);
+          pushLessPriority(2);
           operators_.push((priority) {c, 2});
           break;
         case 'u':
-          while (!operators_.empty() && operators_.top().priority_ <= 3) {
-            push(operators_.top().operator_);
-          }
+          pushLessPriority(3);
           operators_.push((priority) {c, 3});
           break;
         default:
@@ -61,6 +58,11 @@ class PolishEntry {
   void push(char c) {
     polishExpression_.push_back(c);
     operators_.pop();
+  }
+
+  void pushLessPriority(int p) {
+    while (!operators_.empty() && operators_.top().priority_ <= p)
+      push(operators_.top().operator_);
   }
 
   public:
@@ -95,8 +97,33 @@ void test_setPolish_1() {
   assert(p.getPolish() == "AC!&A!B!&C&u");
 }
 
+void test_setPolish_2() {
+  string s = "A-CuC-A-B";
+  PolishEntry p{s};
+
+  assert(p.getPolish() == "AC-CA-B-u");
+}
+
+void test_setPolish_3() {
+  string s = "!(!(A-C)&!(C-A-B))";
+  PolishEntry p{s};
+
+  assert(p.getPolish() == "AC-!CA-B-!&!");
+}
+
+void test_setPolish_4() {
+  string s = "(A-C)u(C-A-B)";
+  PolishEntry p{s};
+
+  assert(p.getPolish() == "AC-CA-B-u");
+}
+
 void tests_setPolish() {
   test_setPolish_0();
+  test_setPolish_1();
+  test_setPolish_2();
+  test_setPolish_3();
+  test_setPolish_4();
 }
 
 void tests() {
@@ -104,10 +131,7 @@ void tests() {
 }
 
 int main() {
-  string s = "A&!Cu!A&!B&C";
-  PolishEntry p{s};
-
-  cout << p.getPolish();
+  tests();
 }
 
 // (0) A-B-CuA&B-CuC-A-B    // Ответ: AB-C-AB&C-uCA-B-u
