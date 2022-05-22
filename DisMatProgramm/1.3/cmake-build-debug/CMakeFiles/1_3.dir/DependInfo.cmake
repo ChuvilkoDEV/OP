@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "D:/BGTU/Programming Basics/DisMatProgramm/1.3/libs/UOAS/UOAS.cpp" "D:/BGTU/Programming Basics/DisMatProgramm/1.3/cmake-build-debug/CMakeFiles/1_3.dir/libs/UOAS/UOAS.cpp.obj"
+  "D:/BGTU/Programming Basics/DisMatProgramm/1.3/libs/array/array.cpp" "D:/BGTU/Programming Basics/DisMatProgramm/1.3/cmake-build-debug/CMakeFiles/1_3.dir/libs/array/array.cpp.obj"
   "D:/BGTU/Programming Basics/DisMatProgramm/1.3/main.cpp" "D:/BGTU/Programming Basics/DisMatProgramm/1.3/cmake-build-debug/CMakeFiles/1_3.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

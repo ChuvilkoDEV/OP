@@ -128,6 +128,54 @@ depend:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\1_3.dir\build.make CMakeFiles/1_3.dir/build
 .PHONY : 1_3/fast
 
+libs/UOAS/UOAS.obj: libs/UOAS/UOAS.cpp.obj
+.PHONY : libs/UOAS/UOAS.obj
+
+# target to build an object file
+libs/UOAS/UOAS.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\1_3.dir\build.make CMakeFiles/1_3.dir/libs/UOAS/UOAS.cpp.obj
+.PHONY : libs/UOAS/UOAS.cpp.obj
+
+libs/UOAS/UOAS.i: libs/UOAS/UOAS.cpp.i
+.PHONY : libs/UOAS/UOAS.i
+
+# target to preprocess a source file
+libs/UOAS/UOAS.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\1_3.dir\build.make CMakeFiles/1_3.dir/libs/UOAS/UOAS.cpp.i
+.PHONY : libs/UOAS/UOAS.cpp.i
+
+libs/UOAS/UOAS.s: libs/UOAS/UOAS.cpp.s
+.PHONY : libs/UOAS/UOAS.s
+
+# target to generate assembly for a file
+libs/UOAS/UOAS.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\1_3.dir\build.make CMakeFiles/1_3.dir/libs/UOAS/UOAS.cpp.s
+.PHONY : libs/UOAS/UOAS.cpp.s
+
+libs/array/array.obj: libs/array/array.cpp.obj
+.PHONY : libs/array/array.obj
+
+# target to build an object file
+libs/array/array.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\1_3.dir\build.make CMakeFiles/1_3.dir/libs/array/array.cpp.obj
+.PHONY : libs/array/array.cpp.obj
+
+libs/array/array.i: libs/array/array.cpp.i
+.PHONY : libs/array/array.i
+
+# target to preprocess a source file
+libs/array/array.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\1_3.dir\build.make CMakeFiles/1_3.dir/libs/array/array.cpp.i
+.PHONY : libs/array/array.cpp.i
+
+libs/array/array.s: libs/array/array.cpp.s
+.PHONY : libs/array/array.s
+
+# target to generate assembly for a file
+libs/array/array.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\1_3.dir\build.make CMakeFiles/1_3.dir/libs/array/array.cpp.s
+.PHONY : libs/array/array.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -161,6 +209,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... 1_3
+	@echo ... libs/UOAS/UOAS.obj
+	@echo ... libs/UOAS/UOAS.i
+	@echo ... libs/UOAS/UOAS.s
+	@echo ... libs/array/array.obj
+	@echo ... libs/array/array.i
+	@echo ... libs/array/array.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
