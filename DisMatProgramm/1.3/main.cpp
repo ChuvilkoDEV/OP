@@ -314,19 +314,16 @@ class PolishEntry {
   int ptr = 0;
 
   void setPolish() {
-    polishExpression_.push_back(standardExpression_[0]);
-    ptr++;
     for (; ptr < standardExpression_.size(); ptr++) {
       char c = standardExpression_[ptr];
       if (c == '(') {
-        PolishEntry p{};
-        p.setExpression((string &) (standardExpression_[ptr]));
-        ptr += p.getPtr();
-        string tmp = p.getPolish();
-        for (auto &j: tmp)
-          polishExpression_.push_back(j);
+        operators_.push((priority) {c, 4});
       } else if (c == ')') {
-        break;
+        while (operators_.top().operator_ != '(') {
+          polishExpression_.push_back(operators_.top().operator_);
+          operators_.pop();
+        }
+        operators_.pop();
       } else if (c == '!') {
         operators_.push((priority) {c, 1});
       } else if (c == '&' || c == '^' || c == '-') {
@@ -352,8 +349,8 @@ class PolishEntry {
   }
 
   public:
-  void setExpression(string &s) {
-    standardExpression_ = s;
+  void setExpression(string *s) {
+    standardExpression_ = *s;
     setPolish();
     ptr = 0;
   }
@@ -369,14 +366,14 @@ class PolishEntry {
 
 int main() {
   PolishEntry p;
-  string s = "A-B-CuA&B-CuC-A-B";
-  p.setExpression(s);
+  string s = "!(!(A-C)&!(C-A-B))";
+  p.setExpression(&s);
 
   cout << p.getPolish();
 }
 
-// (0) A-B-CuA&B-CuC-A-B
-// (1) A&!Cu!A&!B&C
-// (2) A-CuC-A-B
+// (0) A-B-CuA&B-CuC-A-B    // Ответ: AB-C-AB&C-uCA-B-u
+// (1) A&!Cu!A&!B&C         // Ответ: AC!&A!B!&C&u
+// (2) A-CuC-A-B            // Ответ: AC-CA-B-u
 // (3) !(!(A-C)&!(C-A-B))
 // (4) (A-C)u(C-A-B)
