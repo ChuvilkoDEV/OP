@@ -50,12 +50,11 @@ void UOAS_insert(unordered_array_set *set, int value) {
 }
 
 // возвращает множество, состоящее из элементов массива a размера size
-unordered_array_set UOAS_create_from_array(const int *a, size_t size) {
+unordered_array_set UOAS_createFromArray(int *a, int size) {
   unordered_array_set set = UOAS_create(size);
   for (size_t i = 0; i < size; i++) {
     UOAS_insert(&set, a[i]);
   }
-  UOAS_shrinkToFit(&set);
   return set;
 }
 

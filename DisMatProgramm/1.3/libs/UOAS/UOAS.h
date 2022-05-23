@@ -23,7 +23,7 @@ void UOAS_isAbleAppend(unordered_array_set *set);
 
 void UOAS_insert(unordered_array_set *set, int value);
 
-unordered_array_set UOAS_create_from_array(int *a, size_t size);
+unordered_array_set UOAS_createFromArray(int *a, int size);
 
 void UOAS_deleteElement(unordered_array_set *set, int value);
 

@@ -72,25 +72,78 @@ class PolishEntry {
       push(operators_.top().operator_);
   }
 
-  void doMinus() {
+  void doOperator(unordered_array_set (*f)(unordered_array_set, unordered_array_set)) {
+    assert(res.size() > 1);
+    unordered_array_set tmp1 = res.top();
+    res.pop();
+    unordered_array_set tmp2 = res.top();
+    res.pop();
+    res.push(f(tmp2, tmp1));
+  }
 
+  void doComplement() {
+    assert(!res.empty());
+    unordered_array_set tmp1 = res.top();
+    res.pop();
+    res.push(UOAS_complement(tmp1, U));
+  }
+
+  void getUOAS() {
+    for (char c : polishExpression_) {
+      switch (c) {
+        case '-':
+          doOperator(UOAS_difference);
+          break;
+        case '&':
+          doOperator(UOAS_intersection);
+          break;
+        case 'u':
+          doOperator(UOAS_union);
+          break;
+        case '^':
+          doOperator(UOAS_symmetricDifference);
+          break;
+        case '!':
+          doComplement();
+          break;
+        case 'A':
+          res.push(A);
+          break;
+        case 'B':
+          res.push(B);
+          break;
+        case 'C':
+          res.push(C);
+          break;
+        default:
+          cout << "Unknown character: " << c;
+          exit(1);
+      }
+    }
   }
 
   void setUOAS() {
-    A = UOAS_create_from_array((int[]) {1, 3, 5, 7}, 4);
-    B = UOAS_create_from_array((int[]) {2, 3, 6, 7}, 4);
-    C = UOAS_create_from_array((int[]) {4, 5, 6, 7}, 4);
-    U = UOAS_create_from_array((int[]) {1, 2, 3, 4, 5, 6, 7}, 7);
+    int a[] = {1, 3, 5, 7};
+    int b[] = {2, 3, 6, 7};
+    int c[] = {4, 5, 6, 7};
+    int u[] = {1, 2, 3, 4, 5, 6, 7};
+
+    A = UOAS_createFromArray(a, 4);
+    B = UOAS_createFromArray(b, 4);
+    C = UOAS_createFromArray(c, 4);
+    U = UOAS_createFromArray(u, 7);
   }
 
   public:
   explicit PolishEntry(string &s) {
     setExpression(s);
     setUOAS();
+    getUOAS();
   }
 
   PolishEntry() {
     setUOAS();
+    getUOAS();
   }
 
   void setExpression(string &s) {
@@ -104,22 +157,7 @@ class PolishEntry {
   }
 
   unordered_array_set getResult() {
-    for (int i = 0; i < polishExpression_.size(); i++) {
-      char c = polishExpression_[i];
-      switch (c) {
-        case '-':
-        case '!':
-        case '&':
-        case 'u':
-        case '^':
-        case 'A':
-        case 'B':
-        case 'C':
-        default:
-          cout << "Unknown character: " << c;
-          exit(1);
-      }
-    }
+    return res.top();
   }
 };
 
@@ -171,7 +209,10 @@ void tests() {
 }
 
 int main() {
-  tests();
+  string s = "(A-C)u(C-A-B)";
+  PolishEntry p{s};
+
+  UOAS_print(p.getResult());
 }
 
 // (0) A-B-CuA&B-CuC-A-B    // Ответ: AB-C-AB&C-uCA-B-u
