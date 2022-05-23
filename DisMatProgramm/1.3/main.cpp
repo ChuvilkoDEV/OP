@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include <vector>
 #include <cassert>
 
 #include "libs/UOAS/UOAS.h"
@@ -20,6 +21,12 @@ class PolishEntry {
   string polishExpression_{};
   stack<priority> operators_{};
   int ptr = 0;
+
+  stack<unordered_array_set> res{};
+  unordered_array_set A{};
+  unordered_array_set B{};
+  unordered_array_set C{};
+  unordered_array_set U{};
 
   void setPolish() {
     for (; ptr < standardExpression_.size(); ptr++) {
@@ -65,12 +72,26 @@ class PolishEntry {
       push(operators_.top().operator_);
   }
 
+  void doMinus() {
+
+  }
+
+  void setUOAS() {
+    A = UOAS_create_from_array((int[]) {1, 3, 5, 7}, 4);
+    B = UOAS_create_from_array((int[]) {2, 3, 6, 7}, 4);
+    C = UOAS_create_from_array((int[]) {4, 5, 6, 7}, 4);
+    U = UOAS_create_from_array((int[]) {1, 2, 3, 4, 5, 6, 7}, 7);
+  }
+
   public:
   explicit PolishEntry(string &s) {
     setExpression(s);
+    setUOAS();
   }
 
-  PolishEntry() = default;
+  PolishEntry() {
+    setUOAS();
+  }
 
   void setExpression(string &s) {
     standardExpression_ = s;
@@ -80,6 +101,25 @@ class PolishEntry {
 
   string getPolish() {
     return polishExpression_;
+  }
+
+  unordered_array_set getResult() {
+    for (int i = 0; i < polishExpression_.size(); i++) {
+      char c = polishExpression_[i];
+      switch (c) {
+        case '-':
+        case '!':
+        case '&':
+        case 'u':
+        case '^':
+        case 'A':
+        case 'B':
+        case 'C':
+        default:
+          cout << "Unknown character: " << c;
+          exit(1);
+      }
+    }
   }
 };
 
