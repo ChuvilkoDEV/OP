@@ -204,15 +204,56 @@ void tests_setPolish() {
   test_setPolish_4();
 }
 
+void test_getResult1() {
+  string s1 = "A-B-CuA&B-CuC-A-B";
+  PolishEntry p1{s1};
+  string s2 = "A&!Cu!A&!B&C";
+  PolishEntry p2{s2};
+
+  assert(UOAS_isEqual(p1.getResult(), p2.getResult()));
+}
+
+void test_getResult2() {
+  string s1 = "A-CuC-A-B";
+  PolishEntry p1{s1};
+  string s2 = "A&!Cu!A&!B&C";
+  PolishEntry p2{s2};
+
+  assert(UOAS_isEqual(p1.getResult(), p2.getResult()));
+}
+
+void test_getResult3() {
+  string s1 = "A-CuC-A-B";
+  PolishEntry p1{s1};
+  string s2 = "!(!(A-C)&!(C-A-B))";
+  PolishEntry p2{s2};
+
+  assert(UOAS_isEqual(p1.getResult(), p2.getResult()));
+}
+
+void test_getResult4() {
+  string s1 = "(A-C)u(C-A-B)";
+  PolishEntry p1{s1};
+  string s2 = "!(!(A-C)&!(C-A-B))";
+  PolishEntry p2{s2};
+
+  assert(UOAS_isEqual(p1.getResult(), p2.getResult()));
+}
+
+void tests_getResult() {
+  test_getResult1();
+  test_getResult2();
+  test_getResult3();
+  test_getResult4();
+}
+
 void tests() {
   tests_setPolish();
+  tests_getResult();
 }
 
 int main() {
-  string s = "(A-C)u(C-A-B)";
-  PolishEntry p{s};
-
-  UOAS_print(p.getResult());
+  tests();
 }
 
 // (0) A-B-CuA&B-CuC-A-B    // Ответ: AB-C-AB&C-uCA-B-u
