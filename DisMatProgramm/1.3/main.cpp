@@ -249,8 +249,29 @@ void tests() {
   tests_getResult();
 }
 
+#define DEBUG
+
 int main() {
+#ifndef DEBUG
   tests();
+#endif
+#ifdef DEBUG
+  string s1, s2;
+  cin >> s1 >> s2;
+  PolishEntry p1(s1);
+  PolishEntry p2(s2);
+
+  unordered_array_set a1 = p1.getResult();
+  unordered_array_set a2 = p2.getResult();
+
+  UOAS_print(a1);
+  UOAS_print(a2);
+
+  if (UOAS_isEqual(a1, a2))
+    cout << "EQUAL";
+  else
+    cout << "NOT EQUAL";
+#endif
 }
 
 // (0) A-B-CuA&B-CuC-A-B    // Ответ: AB-C-AB&C-uCA-B-u
