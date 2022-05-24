@@ -27,16 +27,15 @@ class Fraction {
   void simpleFraction();
 
   // Возвращает дробь, которая является результатом произведения дроби f1 и f2
-  static Fraction *mulFractions(Fraction &f1, Fraction &f2);
+  Fraction operator*(Fraction &other) const;
 
   // Возвращает дробь, которая является результатом делением дроби f1 на f2
-  static Fraction *divFraction(Fraction &f1, Fraction &f2);
-
-  // Возвращает дробь, которая является суммой дроби f1 и f2
-  static Fraction *addFraction(Fraction &f1, Fraction &f2);
+  Fraction operator/(Fraction &other) const;
 
   // Возвращает дробь, которая является разницей f1 и f2
-  static Fraction *subFraction(Fraction &f1, Fraction &f2);
+  Fraction operator-(Fraction &f);
+
+  Fraction operator+(Fraction &f) const;
 };
 
 #endif //F_FRACTION_H

@@ -36,34 +36,34 @@ void Fraction::simpleFraction() {
 }
 
 // Возвращает дробь, которая является результатом произведения дроби f1 и f2
-Fraction *Fraction::mulFractions(Fraction &f1, Fraction &f2) {
-  assert(f1.denumerator != 0 && f2.denumerator != 0);
-  auto f3 = new Fraction(f1.numerator * f2.numerator,
-                         f1.denumerator * f2.denumerator);
-  f3->simpleFraction();
-  return f3;
+Fraction Fraction::operator*(Fraction &other) const {
+  Fraction res(this->numerator * other.numerator,
+               this->denumerator * other.denumerator);
+  res.simpleFraction();
+  return res;
 }
 
 // Возвращает дробь, которая является результатом делением дроби f1 на f2
-Fraction *Fraction::divFraction(Fraction &f1, Fraction &f2) {
-  assert(f1.denumerator != 0 && f2.denumerator != 0);
-  Fraction tmp(f2.denumerator, f2.numerator);
-  return mulFractions(f1, tmp);
+Fraction Fraction::operator/(Fraction &other) const {
+  Fraction tmp1(other.denumerator, other.numerator);
+  Fraction tmp2((Fraction &) *this);
+  Fraction res;
+  res = tmp2 * tmp1;
+  return res;
 }
 
-// Возвращает дробь, которая является суммой дроби f1 и f2
-Fraction *Fraction::addFraction(Fraction &f1, Fraction &f2) {
-  assert(f1.denumerator != 0 && f2.denumerator != 0);
-  int d = lcm(f1.denumerator, f2.denumerator);
-  auto *f3 = new Fraction(f1.numerator * (d / f1.denumerator) +
-                          f2.numerator * (d / f2.denumerator),
-                          d);
-  f3->simpleFraction();
-  return f3;
+Fraction Fraction::operator+(Fraction &f) const {
+  int d = lcm(this->denumerator, f.denumerator);
+  Fraction res(this->numerator * (d / this->denumerator) +
+               f.numerator * (d / f.denumerator),
+               d);
+  res.simpleFraction();
+  return res;
 }
 
-// Возвращает дробь, которая является разницей f1 и f2
-Fraction *Fraction::subFraction(Fraction &f1, Fraction &f2) {
-  Fraction tmp(-f2.numerator, f2.denumerator);
-  return addFraction(f1, tmp);
+Fraction Fraction::operator-(Fraction &f) {
+  Fraction temp(-f.numerator, f.denumerator);
+  Fraction res;
+  res = temp + *this;
+  return res;
 }
