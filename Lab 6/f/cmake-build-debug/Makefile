@@ -128,29 +128,53 @@ f/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/build
 .PHONY : f/fast
 
-fraction/fraction.obj: fraction/fraction.cpp.obj
-.PHONY : fraction/fraction.obj
+algorithms/algorithms.obj: algorithms/algorithms.cpp.obj
+.PHONY : algorithms/algorithms.obj
 
 # target to build an object file
-fraction/fraction.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/fraction/fraction.cpp.obj
-.PHONY : fraction/fraction.cpp.obj
+algorithms/algorithms.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/algorithms/algorithms.cpp.obj
+.PHONY : algorithms/algorithms.cpp.obj
 
-fraction/fraction.i: fraction/fraction.cpp.i
-.PHONY : fraction/fraction.i
+algorithms/algorithms.i: algorithms/algorithms.cpp.i
+.PHONY : algorithms/algorithms.i
 
 # target to preprocess a source file
-fraction/fraction.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/fraction/fraction.cpp.i
-.PHONY : fraction/fraction.cpp.i
+algorithms/algorithms.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/algorithms/algorithms.cpp.i
+.PHONY : algorithms/algorithms.cpp.i
 
-fraction/fraction.s: fraction/fraction.cpp.s
-.PHONY : fraction/fraction.s
+algorithms/algorithms.s: algorithms/algorithms.cpp.s
+.PHONY : algorithms/algorithms.s
 
 # target to generate assembly for a file
-fraction/fraction.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/fraction/fraction.cpp.s
-.PHONY : fraction/fraction.cpp.s
+algorithms/algorithms.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/algorithms/algorithms.cpp.s
+.PHONY : algorithms/algorithms.cpp.s
+
+fraction/Fraction.obj: fraction/Fraction.cpp.obj
+.PHONY : fraction/Fraction.obj
+
+# target to build an object file
+fraction/Fraction.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/fraction/Fraction.cpp.obj
+.PHONY : fraction/Fraction.cpp.obj
+
+fraction/Fraction.i: fraction/Fraction.cpp.i
+.PHONY : fraction/Fraction.i
+
+# target to preprocess a source file
+fraction/Fraction.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/fraction/Fraction.cpp.i
+.PHONY : fraction/Fraction.cpp.i
+
+fraction/Fraction.s: fraction/Fraction.cpp.s
+.PHONY : fraction/Fraction.s
+
+# target to generate assembly for a file
+fraction/Fraction.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/fraction/Fraction.cpp.s
+.PHONY : fraction/Fraction.cpp.s
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
@@ -185,9 +209,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... f
-	@echo ... fraction/fraction.obj
-	@echo ... fraction/fraction.i
-	@echo ... fraction/fraction.s
+	@echo ... algorithms/algorithms.obj
+	@echo ... algorithms/algorithms.i
+	@echo ... algorithms/algorithms.s
+	@echo ... fraction/Fraction.obj
+	@echo ... fraction/Fraction.i
+	@echo ... fraction/Fraction.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

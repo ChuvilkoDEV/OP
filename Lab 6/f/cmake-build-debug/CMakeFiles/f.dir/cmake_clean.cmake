@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/f.dir/fraction/fraction.cpp.obj"
+  "CMakeFiles/f.dir/algorithms/algorithms.cpp.obj"
+  "CMakeFiles/f.dir/fraction/Fraction.cpp.obj"
   "CMakeFiles/f.dir/main.cpp.obj"
   "f.exe"
   "f.exe.manifest"

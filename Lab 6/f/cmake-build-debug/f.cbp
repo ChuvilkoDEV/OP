@@ -80,10 +80,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/BGTU/Programming Basics/Lab 6/f/fraction/fraction.cpp">
+		<Unit filename="D:/BGTU/Programming Basics/Lab 6/f/algorithms/algorithms.cpp">
 			<Option target="f"/>
 		</Unit>
-		<Unit filename="D:/BGTU/Programming Basics/Lab 6/f/fraction/fraction.h">
+		<Unit filename="D:/BGTU/Programming Basics/Lab 6/f/algorithms/algorithms.h">
+			<Option target="f"/>
+		</Unit>
+		<Unit filename="D:/BGTU/Programming Basics/Lab 6/f/fraction/Fraction.cpp">
+			<Option target="f"/>
+		</Unit>
+		<Unit filename="D:/BGTU/Programming Basics/Lab 6/f/fraction/Fraction.h">
 			<Option target="f"/>
 		</Unit>
 		<Unit filename="D:/BGTU/Programming Basics/Lab 6/f/main.cpp">

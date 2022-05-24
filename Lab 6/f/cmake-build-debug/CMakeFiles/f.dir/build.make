@@ -78,34 +78,49 @@ CMakeFiles/f.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/f.dir/main.cpp.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-R\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\BGTU\Programming Basics\Lab 6\f\main.cpp" -o CMakeFiles\f.dir\main.cpp.s
 
-CMakeFiles/f.dir/fraction/fraction.cpp.obj: CMakeFiles/f.dir/flags.make
-CMakeFiles/f.dir/fraction/fraction.cpp.obj: ../fraction/fraction.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="D:\BGTU\Programming Basics\Lab 6\f\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/f.dir/fraction/fraction.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-R\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\f.dir\fraction\fraction.cpp.obj -c "D:\BGTU\Programming Basics\Lab 6\f\fraction\fraction.cpp"
+CMakeFiles/f.dir/fraction/Fraction.cpp.obj: CMakeFiles/f.dir/flags.make
+CMakeFiles/f.dir/fraction/Fraction.cpp.obj: ../fraction/Fraction.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="D:\BGTU\Programming Basics\Lab 6\f\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/f.dir/fraction/Fraction.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-R\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\f.dir\fraction\Fraction.cpp.obj -c "D:\BGTU\Programming Basics\Lab 6\f\fraction\Fraction.cpp"
 
-CMakeFiles/f.dir/fraction/fraction.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/f.dir/fraction/fraction.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-R\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\BGTU\Programming Basics\Lab 6\f\fraction\fraction.cpp" > CMakeFiles\f.dir\fraction\fraction.cpp.i
+CMakeFiles/f.dir/fraction/Fraction.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/f.dir/fraction/Fraction.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-R\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\BGTU\Programming Basics\Lab 6\f\fraction\Fraction.cpp" > CMakeFiles\f.dir\fraction\Fraction.cpp.i
 
-CMakeFiles/f.dir/fraction/fraction.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/f.dir/fraction/fraction.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-R\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\BGTU\Programming Basics\Lab 6\f\fraction\fraction.cpp" -o CMakeFiles\f.dir\fraction\fraction.cpp.s
+CMakeFiles/f.dir/fraction/Fraction.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/f.dir/fraction/Fraction.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-R\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\BGTU\Programming Basics\Lab 6\f\fraction\Fraction.cpp" -o CMakeFiles\f.dir\fraction\Fraction.cpp.s
+
+CMakeFiles/f.dir/algorithms/algorithms.cpp.obj: CMakeFiles/f.dir/flags.make
+CMakeFiles/f.dir/algorithms/algorithms.cpp.obj: ../algorithms/algorithms.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="D:\BGTU\Programming Basics\Lab 6\f\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/f.dir/algorithms/algorithms.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-R\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\f.dir\algorithms\algorithms.cpp.obj -c "D:\BGTU\Programming Basics\Lab 6\f\algorithms\algorithms.cpp"
+
+CMakeFiles/f.dir/algorithms/algorithms.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/f.dir/algorithms/algorithms.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-R\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\BGTU\Programming Basics\Lab 6\f\algorithms\algorithms.cpp" > CMakeFiles\f.dir\algorithms\algorithms.cpp.i
+
+CMakeFiles/f.dir/algorithms/algorithms.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/f.dir/algorithms/algorithms.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-R\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\BGTU\Programming Basics\Lab 6\f\algorithms\algorithms.cpp" -o CMakeFiles\f.dir\algorithms\algorithms.cpp.s
 
 # Object files for target f
 f_OBJECTS = \
 "CMakeFiles/f.dir/main.cpp.obj" \
-"CMakeFiles/f.dir/fraction/fraction.cpp.obj"
+"CMakeFiles/f.dir/fraction/Fraction.cpp.obj" \
+"CMakeFiles/f.dir/algorithms/algorithms.cpp.obj"
 
 # External object files for target f
 f_EXTERNAL_OBJECTS =
 
 f.exe: CMakeFiles/f.dir/main.cpp.obj
-f.exe: CMakeFiles/f.dir/fraction/fraction.cpp.obj
+f.exe: CMakeFiles/f.dir/fraction/Fraction.cpp.obj
+f.exe: CMakeFiles/f.dir/algorithms/algorithms.cpp.obj
 f.exe: CMakeFiles/f.dir/build.make
 f.exe: CMakeFiles/f.dir/linklibs.rsp
 f.exe: CMakeFiles/f.dir/objects1.rsp
 f.exe: CMakeFiles/f.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="D:\BGTU\Programming Basics\Lab 6\f\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable f.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="D:\BGTU\Programming Basics\Lab 6\f\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable f.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\f.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
