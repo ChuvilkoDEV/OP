@@ -1,6 +1,7 @@
 #include <iostream>
+#include "BitSet/BitSet.h"
 
 int main() {
-  std::cout << "Hello, World!" << std::endl;
+  BitSet({1,232});
   return 0;
 }

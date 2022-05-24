@@ -13,7 +13,7 @@ void sort2(int &a, int &b) {
 
 // Возвращает наибольший общий делитель чисел a и b
 int gcd(int a, int b) {
-  sort2(&a, &b);
+  sort2(a, b);
   if (b % a == 0)
     return a;
   int gcd = 1;
@@ -25,7 +25,7 @@ int gcd(int a, int b) {
 
 // Возвращает наименьшее общее кратное чисел a и b
 int lcm(int a, int b) {
-  sort2(&a, &b);
+  sort2(a, b);
   int d = gcd(a, b);
   if (d == 1)
     return a * b;

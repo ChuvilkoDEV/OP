@@ -8,7 +8,7 @@
 
 void swap(int &a, int &b);
 
-void sort2(int *a, int *b);
+void sort2(int &a, int &b);
 
 int gcd(int a, int b);
 

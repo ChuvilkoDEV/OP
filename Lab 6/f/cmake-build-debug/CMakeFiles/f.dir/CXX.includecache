@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/BGTU/Programming Basics/Lab 6/f/BitSet/BitSet.h
+iostream
+-
+string
+-
+vector
+-
+
+D:/BGTU/Programming Basics/Lab 6/f/main.cpp
+iostream
+-
+BitSet/BitSet.h
+D:/BGTU/Programming Basics/Lab 6/f/BitSet/BitSet.h
+

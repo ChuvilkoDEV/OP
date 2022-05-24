@@ -128,6 +128,30 @@ f/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/build
 .PHONY : f/fast
 
+BitSet/BitSet.obj: BitSet/BitSet.cpp.obj
+.PHONY : BitSet/BitSet.obj
+
+# target to build an object file
+BitSet/BitSet.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/BitSet/BitSet.cpp.obj
+.PHONY : BitSet/BitSet.cpp.obj
+
+BitSet/BitSet.i: BitSet/BitSet.cpp.i
+.PHONY : BitSet/BitSet.i
+
+# target to preprocess a source file
+BitSet/BitSet.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/BitSet/BitSet.cpp.i
+.PHONY : BitSet/BitSet.cpp.i
+
+BitSet/BitSet.s: BitSet/BitSet.cpp.s
+.PHONY : BitSet/BitSet.s
+
+# target to generate assembly for a file
+BitSet/BitSet.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/BitSet/BitSet.cpp.s
+.PHONY : BitSet/BitSet.cpp.s
+
 algorithms/algorithms.obj: algorithms/algorithms.cpp.obj
 .PHONY : algorithms/algorithms.obj
 
@@ -209,6 +233,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... f
+	@echo ... BitSet/BitSet.obj
+	@echo ... BitSet/BitSet.i
+	@echo ... BitSet/BitSet.s
 	@echo ... algorithms/algorithms.obj
 	@echo ... algorithms/algorithms.i
 	@echo ... algorithms/algorithms.s
