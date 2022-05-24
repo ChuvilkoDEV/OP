@@ -1,7 +1,6 @@
 #include <iostream>
 #include <stack>
 #include <string>
-#include <vector>
 #include <cassert>
 
 #include "libs/UOAS/UOAS.h"
@@ -263,6 +262,9 @@ int main() {
 
   unordered_array_set a1 = p1.getResult();
   unordered_array_set a2 = p2.getResult();
+
+  cout << p1.getPolish() << '\n';
+  cout << p2.getPolish() << '\n';
 
   UOAS_print(a1);
   UOAS_print(a2);
