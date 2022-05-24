@@ -20,7 +20,6 @@ class PolishEntry {
   string standardExpression_{};
   string polishExpression_{};
   stack<priority> operators_{};
-  int ptr = 0;
 
   stack<unordered_array_set> res{};
   unordered_array_set A{};
@@ -29,8 +28,7 @@ class PolishEntry {
   unordered_array_set U{};
 
   void setPolish() {
-    for (; ptr < standardExpression_.size(); ptr++) {
-      char c = standardExpression_[ptr];
+    for (char c : standardExpression_) {
       switch (c) {
         case '(':
           operators_.push((priority) {c, 4});
@@ -149,7 +147,6 @@ class PolishEntry {
   void setExpression(string &s) {
     standardExpression_ = s;
     setPolish();
-    ptr = 0;
   }
 
   string getPolish() {
