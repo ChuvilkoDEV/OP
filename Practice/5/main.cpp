@@ -23,7 +23,7 @@ struct List {
 };
 
 // Возвращает длиннейшую возрастающую последовательность
-int increase(vector<int> &v) {
+void increase(vector<int> &v) {
   // Первый элемент указывает на родителя. Второй на порядковый номер
   vector<List> din(v.size());
 
@@ -43,37 +43,64 @@ int increase(vector<int> &v) {
       maxLength = din[i];
   }
 
-  return maxLength.index;
+  List *ptr = &maxLength;
+  for (int i = maxLength.index - 1; i >= 0; i--) {
+    v[i] = ptr->value;
+    ptr = ptr->parent;
+  }
+  while (v.size() > maxLength.index)
+    v.pop_back();
 }
 
-void reverse(vector<int> &v) {
-  for (int i = 0; i < v.size() / 2; i++) {
-    swap(v[i], v[v.size() - i - 1]);
-  }
+void test_default() {
+  vector<int> v = {1, 12, 13, 4, 5, 6};
+  vector<int> res = {1, 4, 5, 6};
+
+  increase(v);
+
+  assert(v == res);
+}
+
+void test_allIncrease() {
+  vector<int> v = {1, 2, 3, 4, 5, 6};
+  vector<int> res = {1, 2, 3, 4, 5, 6};
+
+  increase(v);
+
+  assert(v == res);
+}
+
+void test_allDecrease() {
+  vector<int> v = {6, 5, 4, 3, 2, 1};
+  vector<int> res = {6};
+
+  increase(v);
+
+  assert(v == res);
+}
+
+void tests() {
+  test_default();
+  test_allIncrease();
+  test_allDecrease();
 }
 
 int main() {
-  int t;
-  cin >> t;
-  for (int k = 0; k < t; k++) {
-    int size;
-    cin >> size;
+#ifndef DEBUG
+  tests();
+#endif
 
-    vector<int> v(size);
-    for (int i = 0; i < size; i++) {
-      cin >> v[i];
-    }
+#ifdef DEBUG
+  int n;
+  cin >> n;
 
-    auto rost = [](int x, int y) {
-      return x < y;
-    };
+  vector<int> v(n);
+  inputVector(v);
 
-    sort(v.begin(), &v[v.size()/2], rost);
+  increase(v);
 
-    int a = increase(v);
-    reverse(v);
-    cout << min(a, increase(v)) << '\n';
-  }
+  outputVector(v);
+#endif
 
   return 0;
 }
