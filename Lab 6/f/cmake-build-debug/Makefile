@@ -152,6 +152,30 @@ BitSet/BitSet.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/BitSet/BitSet.cpp.s
 .PHONY : BitSet/BitSet.cpp.s
 
+PrefixSum/PrefixSum.obj: PrefixSum/PrefixSum.cpp.obj
+.PHONY : PrefixSum/PrefixSum.obj
+
+# target to build an object file
+PrefixSum/PrefixSum.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/PrefixSum/PrefixSum.cpp.obj
+.PHONY : PrefixSum/PrefixSum.cpp.obj
+
+PrefixSum/PrefixSum.i: PrefixSum/PrefixSum.cpp.i
+.PHONY : PrefixSum/PrefixSum.i
+
+# target to preprocess a source file
+PrefixSum/PrefixSum.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/PrefixSum/PrefixSum.cpp.i
+.PHONY : PrefixSum/PrefixSum.cpp.i
+
+PrefixSum/PrefixSum.s: PrefixSum/PrefixSum.cpp.s
+.PHONY : PrefixSum/PrefixSum.s
+
+# target to generate assembly for a file
+PrefixSum/PrefixSum.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/PrefixSum/PrefixSum.cpp.s
+.PHONY : PrefixSum/PrefixSum.cpp.s
+
 algorithms/algorithms.obj: algorithms/algorithms.cpp.obj
 .PHONY : algorithms/algorithms.obj
 
@@ -236,6 +260,9 @@ help:
 	@echo ... BitSet/BitSet.obj
 	@echo ... BitSet/BitSet.i
 	@echo ... BitSet/BitSet.s
+	@echo ... PrefixSum/PrefixSum.obj
+	@echo ... PrefixSum/PrefixSum.i
+	@echo ... PrefixSum/PrefixSum.s
 	@echo ... algorithms/algorithms.obj
 	@echo ... algorithms/algorithms.i
 	@echo ... algorithms/algorithms.s

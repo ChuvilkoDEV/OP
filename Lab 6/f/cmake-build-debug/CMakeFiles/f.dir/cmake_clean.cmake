@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/f.dir/BitSet/BitSet.cpp.obj"
+  "CMakeFiles/f.dir/PrefixSum/PrefixSum.cpp.obj"
   "CMakeFiles/f.dir/algorithms/algorithms.cpp.obj"
   "CMakeFiles/f.dir/fraction/Fraction.cpp.obj"
   "CMakeFiles/f.dir/main.cpp.obj"

@@ -86,6 +86,12 @@
 		<Unit filename="D:/BGTU/Programming Basics/Lab 6/f/BitSet/BitSet.h">
 			<Option target="f"/>
 		</Unit>
+		<Unit filename="D:/BGTU/Programming Basics/Lab 6/f/PrefixSum/PrefixSum.cpp">
+			<Option target="f"/>
+		</Unit>
+		<Unit filename="D:/BGTU/Programming Basics/Lab 6/f/PrefixSum/PrefixSum.h">
+			<Option target="f"/>
+		</Unit>
 		<Unit filename="D:/BGTU/Programming Basics/Lab 6/f/algorithms/algorithms.cpp">
 			<Option target="f"/>
 		</Unit>

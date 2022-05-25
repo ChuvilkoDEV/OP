@@ -8,4 +8,4 @@ add_executable(
 
         fraction/Fraction.cpp
         fraction/Fraction.h
-        algorithms/algorithms.cpp algorithms/algorithms.h BitSet/BitSet.cpp BitSet/BitSet.h)
+        algorithms/algorithms.cpp algorithms/algorithms.h BitSet/BitSet.cpp BitSet/BitSet.h PrefixSum/PrefixSum.cpp PrefixSum/PrefixSum.h)

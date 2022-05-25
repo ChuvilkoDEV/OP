@@ -6,14 +6,12 @@
 
 #IncludeRegexTransform: 
 
-D:/BGTU/Programming Basics/Lab 6/f/BitSet/BitSet.cpp
-BitSet.h
-D:/BGTU/Programming Basics/Lab 6/f/BitSet/BitSet.h
+D:/BGTU/Programming Basics/Lab 6/f/PrefixSum/PrefixSum.cpp
+PrefixSum.h
+D:/BGTU/Programming Basics/Lab 6/f/PrefixSum/PrefixSum.h
 
-D:/BGTU/Programming Basics/Lab 6/f/BitSet/BitSet.h
+D:/BGTU/Programming Basics/Lab 6/f/PrefixSum/PrefixSum.h
 iostream
--
-string
 -
 vector
 -

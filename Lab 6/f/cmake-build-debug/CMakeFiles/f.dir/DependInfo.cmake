@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "D:/BGTU/Programming Basics/Lab 6/f/BitSet/BitSet.cpp" "D:/BGTU/Programming Basics/Lab 6/f/cmake-build-debug/CMakeFiles/f.dir/BitSet/BitSet.cpp.obj"
+  "D:/BGTU/Programming Basics/Lab 6/f/PrefixSum/PrefixSum.cpp" "D:/BGTU/Programming Basics/Lab 6/f/cmake-build-debug/CMakeFiles/f.dir/PrefixSum/PrefixSum.cpp.obj"
   "D:/BGTU/Programming Basics/Lab 6/f/algorithms/algorithms.cpp" "D:/BGTU/Programming Basics/Lab 6/f/cmake-build-debug/CMakeFiles/f.dir/algorithms/algorithms.cpp.obj"
   "D:/BGTU/Programming Basics/Lab 6/f/fraction/Fraction.cpp" "D:/BGTU/Programming Basics/Lab 6/f/cmake-build-debug/CMakeFiles/f.dir/fraction/Fraction.cpp.obj"
   "D:/BGTU/Programming Basics/Lab 6/f/main.cpp" "D:/BGTU/Programming Basics/Lab 6/f/cmake-build-debug/CMakeFiles/f.dir/main.cpp.obj"
