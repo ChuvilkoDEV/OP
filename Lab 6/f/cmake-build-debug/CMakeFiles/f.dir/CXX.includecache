@@ -6,14 +6,14 @@
 
 #IncludeRegexTransform: 
 
-D:/BGTU/Programming Basics/Lab 6/f/PrefixSum/PrefixSum.cpp
-PrefixSum.h
-D:/BGTU/Programming Basics/Lab 6/f/PrefixSum/PrefixSum.h
+D:/BGTU/Programming Basics/Lab 6/f/MaterialPoint/MaterialPoint.cpp
+MaterialPoint.h
+D:/BGTU/Programming Basics/Lab 6/f/MaterialPoint/MaterialPoint.h
 
-D:/BGTU/Programming Basics/Lab 6/f/PrefixSum/PrefixSum.h
+D:/BGTU/Programming Basics/Lab 6/f/MaterialPoint/MaterialPoint.h
 iostream
 -
-vector
+cmath
 -
 cassert
 -

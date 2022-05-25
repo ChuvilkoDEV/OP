@@ -4,6 +4,9 @@
 CMakeFiles/f.dir/BitSet/BitSet.cpp.obj: \
  ../BitSet/BitSet.cpp \
  ../BitSet/BitSet.h
+CMakeFiles/f.dir/MaterialPoint/MaterialPoint.cpp.obj: \
+ ../MaterialPoint/MaterialPoint.cpp \
+ ../MaterialPoint/MaterialPoint.h
 CMakeFiles/f.dir/PrefixSum/PrefixSum.cpp.obj: \
  ../PrefixSum/PrefixSum.cpp \
  ../PrefixSum/PrefixSum.h
@@ -16,5 +19,6 @@ CMakeFiles/f.dir/fraction/Fraction.cpp.obj: \
  ../fraction/Fraction.h
 CMakeFiles/f.dir/main.cpp.obj: \
  ../BitSet/BitSet.h \
+ ../MaterialPoint/MaterialPoint.h \
  ../PrefixSum/PrefixSum.h \
  ../main.cpp
