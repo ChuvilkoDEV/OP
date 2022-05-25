@@ -6,8 +6,7 @@
 
 #include "../algorithms/algorithms.h"
 
-class Fraction {
-  public:
+struct Fraction {
   int numerator;
   int denumerator;
 

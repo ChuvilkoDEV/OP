@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cassert>
 
 using namespace std;
 
@@ -22,17 +23,21 @@ class BitSet {
   public:
   BitSet() = default;
 
-  BitSet(int maxValue);
+  BitSet(uint32_t maxValue);
 
   BitSet(const vector<int> &v);
 
   uint32_t getValues() const;
+
+  void setValues(uint32_t values);
 
   unsigned getPower() const;
 
   bool empty() const;
 
   bool find(unsigned x) const;
+
+  void output();
 
   void insert(unsigned x);
 
@@ -43,6 +48,19 @@ class BitSet {
   bool operator!=(BitSet &other) const;
 
   bool isSubset(const BitSet &set) const;
+
+  static BitSet intersection_(const BitSet &lhs, const BitSet &rhs);
+
+  static BitSet difference_(const BitSet &lhs, const BitSet &rhs);
+
+  static BitSet symmetricDifference_(const BitSet &lhs,
+                                     const BitSet &rhs);
+
+  static BitSet complement_(const BitSet &set);
+
+  friend ostream& operator<<(std::ostream &out, const BitSet &f);
 };
+
+void tests_BitSet();
 
 #endif //F_BITSET_H

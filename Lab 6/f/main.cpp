@@ -2,6 +2,6 @@
 #include "BitSet/BitSet.h"
 
 int main() {
-  BitSet({1,232});
+  tests_BitSet();
   return 0;
 }

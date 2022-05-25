@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+D:/BGTU/Programming Basics/Lab 6/f/BitSet/BitSet.cpp
+BitSet.h
+D:/BGTU/Programming Basics/Lab 6/f/BitSet/BitSet.h
+
 D:/BGTU/Programming Basics/Lab 6/f/BitSet/BitSet.h
 iostream
 -
@@ -13,10 +17,6 @@ string
 -
 vector
 -
-
-D:/BGTU/Programming Basics/Lab 6/f/main.cpp
-iostream
+cassert
 -
-BitSet/BitSet.h
-D:/BGTU/Programming Basics/Lab 6/f/BitSet/BitSet.h
 
