@@ -7,14 +7,23 @@
 #include "../algorithms/algorithms.h"
 
 struct Fraction {
-  int numerator;
-  int denumerator;
+  int numerator = 0;
+  int denumerator = 1;
 
-  Fraction();
+  // Конструктор для Fraction
+  Fraction() = default;
 
+  // Конструктор для Fraction
   Fraction(Fraction &f);
 
+  // Конструктор для Fraction
   Fraction(int n, int d);
+
+  // Возвращает true, если дробь положительна
+  bool isPositive() const;
+
+  // Приводит Fraction к нормальному виду
+  void bringingToNormal();
 
   // Осуществляет ввод структуры Fraction
   void inputFraction();
@@ -34,7 +43,10 @@ struct Fraction {
   // Возвращает дробь, которая является разницей f1 и f2
   Fraction operator-(Fraction &f);
 
+  // Возвращает дробь, которая является суммой f1 и f2
   Fraction operator+(Fraction &f) const;
 };
+
+void tests_Fraction();
 
 #endif //F_FRACTION_H

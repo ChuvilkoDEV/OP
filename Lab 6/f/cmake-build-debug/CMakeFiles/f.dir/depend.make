@@ -21,4 +21,6 @@ CMakeFiles/f.dir/main.cpp.obj: \
  ../BitSet/BitSet.h \
  ../MaterialPoint/MaterialPoint.h \
  ../PrefixSum/PrefixSum.h \
+ ../algorithms/algorithms.h \
+ ../fraction/Fraction.h \
  ../main.cpp
