@@ -152,6 +152,30 @@ BitSet/BitSet.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/BitSet/BitSet.cpp.s
 .PHONY : BitSet/BitSet.cpp.s
 
+MaterialPoint/MaterialPoint.obj: MaterialPoint/MaterialPoint.cpp.obj
+.PHONY : MaterialPoint/MaterialPoint.obj
+
+# target to build an object file
+MaterialPoint/MaterialPoint.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/MaterialPoint/MaterialPoint.cpp.obj
+.PHONY : MaterialPoint/MaterialPoint.cpp.obj
+
+MaterialPoint/MaterialPoint.i: MaterialPoint/MaterialPoint.cpp.i
+.PHONY : MaterialPoint/MaterialPoint.i
+
+# target to preprocess a source file
+MaterialPoint/MaterialPoint.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/MaterialPoint/MaterialPoint.cpp.i
+.PHONY : MaterialPoint/MaterialPoint.cpp.i
+
+MaterialPoint/MaterialPoint.s: MaterialPoint/MaterialPoint.cpp.s
+.PHONY : MaterialPoint/MaterialPoint.s
+
+# target to generate assembly for a file
+MaterialPoint/MaterialPoint.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\f.dir\build.make CMakeFiles/f.dir/MaterialPoint/MaterialPoint.cpp.s
+.PHONY : MaterialPoint/MaterialPoint.cpp.s
+
 PrefixSum/PrefixSum.obj: PrefixSum/PrefixSum.cpp.obj
 .PHONY : PrefixSum/PrefixSum.obj
 
@@ -260,6 +284,9 @@ help:
 	@echo ... BitSet/BitSet.obj
 	@echo ... BitSet/BitSet.i
 	@echo ... BitSet/BitSet.s
+	@echo ... MaterialPoint/MaterialPoint.obj
+	@echo ... MaterialPoint/MaterialPoint.i
+	@echo ... MaterialPoint/MaterialPoint.s
 	@echo ... PrefixSum/PrefixSum.obj
 	@echo ... PrefixSum/PrefixSum.i
 	@echo ... PrefixSum/PrefixSum.s

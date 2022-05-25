@@ -5,6 +5,7 @@ using namespace std;
 Fraction::Fraction(int n, int d) {
   numerator = n;
   denumerator = d;
+  simpleFraction();
 }
 
 Fraction::Fraction(Fraction &f) {
@@ -14,7 +15,7 @@ Fraction::Fraction(Fraction &f) {
 
 Fraction::Fraction() {
   numerator = 0;
-  denumerator = 0;
+  denumerator = 1;
 }
 
 // Осуществляет ввод структуры Fraction
