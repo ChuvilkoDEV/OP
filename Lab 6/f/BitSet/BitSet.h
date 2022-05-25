@@ -37,8 +37,6 @@ class BitSet {
 
   bool find(unsigned x) const;
 
-  void output();
-
   void insert(unsigned x);
 
   void erase(unsigned x);
