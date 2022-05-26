@@ -27,7 +27,7 @@ class PolishEntry {
   unordered_array_set U{};
 
   void setPolish() {
-    for (char c : standardExpression_) {
+    for (char c: standardExpression_) {
       switch (c) {
         case '(':
           operators_.push((priority) {c, 4});
@@ -42,12 +42,12 @@ class PolishEntry {
           operators_.push((priority) {c, 1});
           break;
         case '&':
-        case '^':
-        case '-':
           pushLessPriority(2);
           operators_.push((priority) {c, 2});
           break;
         case 'u':
+        case '^':
+        case '-':
           pushLessPriority(3);
           operators_.push((priority) {c, 3});
           break;
@@ -69,7 +69,8 @@ class PolishEntry {
       push(operators_.top().operator_);
   }
 
-  void doOperator(unordered_array_set (*f)(unordered_array_set, unordered_array_set)) {
+  void doOperator(
+    unordered_array_set (*f)(unordered_array_set, unordered_array_set)) {
     assert(res.size() > 1);
     unordered_array_set tmp1 = res.top();
     res.pop();
@@ -86,7 +87,7 @@ class PolishEntry {
   }
 
   void getUOAS() {
-    for (char c : polishExpression_) {
+    for (char c: polishExpression_) {
       switch (c) {
         case '-':
           doOperator(UOAS_difference);
@@ -113,7 +114,7 @@ class PolishEntry {
           res.push(C);
           break;
         default:
-          cout << "Unknown character: " << c;
+          cerr << "Unknown character: " << c;
           exit(1);
       }
     }
@@ -251,7 +252,22 @@ void tests() {
 #define DEBUG
 
 int main() {
+#ifndef DEBUG
+  tests();
+#endif
+#ifdef DEBUG
+  string s1 = "C^(D-A)uB-C&(B-A)-D";
+  PolishEntry p1{s1};
+  string s2 = "C&!DuC&Au!A&!C&DuB&!Cu(!BuAuD)";
+  PolishEntry p2{s2};
 
+
+  cout << p1.getPolish() << '\n';
+  UOAS_print(p1.getResult());
+
+  cout << p2.getPolish() << '\n';
+  UOAS_print(p2.getResult());
+#endif
 }
 
 // (0) A-B-CuA&B-CuC-A-B    // Ответ: AB-C-AB&C-uCA-B-u
@@ -259,3 +275,5 @@ int main() {
 // (2) A-CuC-A-B            // Ответ: AC-CA-B-u
 // (3) !(!(A-C)&!(C-A-B))   // Ответ: AC-!CA-B-!&!
 // (4) (A-C)u(C-A-B)        // Ответ: AC-CA-B-u
+
+// A&!BuA&CuA&B&!CuC&!AuC&B
