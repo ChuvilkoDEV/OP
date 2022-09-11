@@ -113,6 +113,9 @@ class PolishEntry {
         case 'C':
           res.push(C);
           break;
+        case 'X':
+          res.push(U);
+          break;
         default:
           cerr << "Unknown character: " << c;
           exit(1);
@@ -256,9 +259,9 @@ int main() {
   tests();
 #endif
 #ifdef DEBUG
-  string s1 = "C^(D-A)uB-C&(B-A)-D";
+  string s1 = "(A-(X&B)u(C&!X))^((X-A)&(X-B)-C)";
   PolishEntry p1{s1};
-  string s2 = "C&!DuC&Au!A&!C&DuB&!Cu(!BuAuD)";
+  string s2 = "(A-(!X&B)u(C&X))^((!X-A)&(!X-B)-C)";
   PolishEntry p2{s2};
 
 
